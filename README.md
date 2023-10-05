@@ -67,8 +67,9 @@ $ huggingface-cli login
 We use a config-driven hyper-parameter search. The script [`flair-fine-tuner.py`](flair-fine-tuner.py) can be used to
 fine-tune NER models from our Model Zoo.
 
-Additionally, we provide a script that uses Hugging Face [AutoTrain Advanced (Space Runner)](https://github.com/huggingface/autotrain-advanced)
-to fine-tung models. The following snippet shows an example:
+Additionally, we provide a script that uses Hugging Face
+[AutoTrain Advanced (Space Runner)](https://github.com/huggingface/autotrain-advanced) to fine-tune models.
+The following snippet shows an example:
 
 ```bash
 $ pip3 install git+https://github.com/huggingface/autotrain-advanced.git
@@ -83,7 +84,8 @@ $ autotrain spacerunner --project-name "flair-hipe2022-de-hmteams" \
 
 The concrete implementation can be found in [`script.py`](script.py).
 
-All fine-tuning configurations are located in the `./configs` folder with the following naming convention: `./configs/<dataset-name>/<language>/<model-name>.json`.
+All configurations for fine-tuning are located in the `./configs` folder with the following naming convention:
+`./configs/<dataset-name>/<language>/<model-name>.json`.
 
 # Changelog
 
