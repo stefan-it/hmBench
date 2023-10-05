@@ -36,7 +36,7 @@ shows an overview of used datasets:
 
 ## Results
 
-We set-up a Leaderboard - named hmLeaderboard - on the Hugging Face Model Hub benchmarking the models and can be
+The `hmLeaderboard` space on the Hugging Face Model Hub shows all results and can be
 accessed [here](https://huggingface.co/spaces/hmbench/hmLeaderboard).
 
 ## Fine-Tuning
