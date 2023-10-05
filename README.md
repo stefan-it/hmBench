@@ -86,6 +86,8 @@ $ autotrain spacerunner --project-name "flair-hipe2022-de-hmteams" \
 
 The concrete implementation can be found in [`script.py`](script.py).
 
+**Notice**: the AutoTrain implementation is currently under development!
+
 All configurations for fine-tuning are located in the `./configs` folder with the following naming convention:
 `./configs/<dataset-name>/<language>/<model-name>.json`.
 
