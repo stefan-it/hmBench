@@ -52,10 +52,7 @@ We use a tagged version of Flair to ensure a kind of reproducibility. The follow
 all necessary dependencies:
 
 ```bash
-$ git clone https://github.com/flairNLP/flair.git
-$ cd flair && git checkout 419f13a05d6b36b2a42dd73a551dc3ba679f820c
-$ pip3 install -e .
-$ cd ..
+$ pip3 install -r requirements.txt
 ```
 
 In order to use the hmTEAMS models you need to authorize with your account on Hugging Face Model Hub. This can be done
@@ -76,12 +73,12 @@ The following snippet shows an example:
 ```bash
 $ pip3 install git+https://github.com/huggingface/autotrain-advanced.git
 $  export HF_TOKEN="" # Get token from: https://huggingface.co/settings/tokens
-$ autotrain spacerunner --project-name "flair-hmbench-hmbyt5-ajmc-en" \
+$ autotrain spacerunner --project-name "flair-hmbench-hmbyt5-ajmc-de" \
   --script-path $(pwd) \
   --username stefan-it \
   --token $HF_TOKEN \
   --backend spaces-t4s \
-  --env "CONFIG=configs/ajmc/en/hmbyt5.json;HF_TOKEN=$HF_TOKEN;HUB_ORG_NAME=stefan-it"
+  --env "CONFIG=configs/ajmc/de/hmbyt5.json;HF_TOKEN=$HF_TOKEN;HUB_ORG_NAME=stefan-it"
 ```
 
 The concrete implementation can be found in [`script.py`](script.py).
