@@ -41,12 +41,13 @@ for seed in seeds:
                     fine_tuner.run_experiment(seed, batch_size, epoch, learning_rate, subword_pooling, hipe_datasets,
                                               json_config)
                     datasets = "-".join([dataset for dataset in hipe_datasets]).replace("/", "-")
-                    hf_model = json_config["hf_model"].replace("/", "-").split("-")[0]
+                    hf_model = json_config["hf_model"].replace("/", "-")
                     context_size = json_config["context_size"]
                     layers = json_config["layers"] if "layers" in json_config else "-1"
                     use_crf = json_config["use_crf"] if "use_crf" in json_config else False
 
-                    repo_name = f"hmbench-{datasets}-{hf_model}-bs{batch_size}-ws{context_size}-e{epoch}-lr{learning_rate}-pooling{subword_pooling}-layers{layers}-crf{use_crf}-{seed}"
+                    repo_name = f'hmbench-{datasets}-{hf_model.split("-")[0]}-bs{batch_size}-ws{context_size}-e{epoch}-lr{learning_rate}-pooling{subword_pooling}-layers{layers}-crf{use_crf}-{seed}'
+                    output_path = f"hmbench-{datasets}-{hf_model}-bs{batch_size}-ws{context_size}-e{epoch}-lr{learning_rate}-pooling{subword_pooling}-layers{layers}-crf{use_crf}-{seed}"
 
                     repo_url = api.create_repo(
                         repo_id=f"{hf_hub_org_name}/{repo_name}",
@@ -56,7 +57,7 @@ for seed in seeds:
                     )
 
                     api.upload_folder(
-                        folder_path="./",
+                        folder_path=output_path,
                         path_in_repo="./",
                         repo_id=f"{hf_hub_org_name}/{repo_name}",
                         repo_type="model",
