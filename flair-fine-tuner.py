@@ -1,25 +1,23 @@
 import json
 import logging
 import sys
-
 import flair
-import torch
+
+from flair import set_seed
 
 from typing import List
 
 from flair.data import MultiCorpus
-from flair.datasets import ColumnCorpus, NER_HIPE_2022, NER_ICDAR_EUROPEANA
-from flair.embeddings import (
-    TokenEmbeddings,
-    StackedEmbeddings,
-    TransformerWordEmbeddings
-)
-from flair import set_seed
+from flair.datasets import NER_HIPE_2022, NER_ICDAR_EUROPEANA
+from flair.embeddings import TransformerWordEmbeddings
 from flair.models import SequenceTagger
 from flair.trainers import ModelTrainer
 from flair.trainers.plugins.loggers.tensorboard import TensorboardLogger
 
+from pathlib import Path
+
 from byt5_embeddings import ByT5Embeddings
+
 from utils import prepare_ajmc_corpus, prepare_clef_2020_corpus, prepare_newseye_fi_sv_corpus, prepare_newseye_de_fr_corpus
 
 logger = logging.getLogger("flair")
@@ -111,7 +109,11 @@ def run_experiment(seed: int, batch_size: int, epoch: int, learning_rate: float,
 
     if use_tensorboard_logger:
         logger.info("TensorBoard logging is enabled")
-        plugins.append(TensorboardLogger(log_dir=f"{output_path}/runs", comment=output_path))
+
+        tb_path = Path(f"{output_path}/runs")
+        tb_path.mkdir(parents=True, exist_ok=True)
+
+        plugins.append(TensorboardLogger(log_dir=str(tb_path), comment=output_path))
 
     trainer.fine_tune(
         output_path,
