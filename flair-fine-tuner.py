@@ -17,7 +17,9 @@ from flair.embeddings import (
 from flair import set_seed
 from flair.models import SequenceTagger
 from flair.trainers import ModelTrainer
+from flair.trainers.plugins.loggers.tensorboard import TensorboardLogger
 
+from byt5_embeddings import ByT5Embeddings
 from utils import prepare_ajmc_corpus, prepare_clef_2020_corpus, prepare_newseye_fi_sv_corpus, prepare_newseye_de_fr_corpus
 
 logger = logging.getLogger("flair")
@@ -30,6 +32,7 @@ def run_experiment(seed: int, batch_size: int, epoch: int, learning_rate: float,
     context_size = json_config["context_size"]
     layers = json_config["layers"] if "layers" in json_config else "-1"
     use_crf = json_config["use_crf"] if "use_crf" in json_config else False
+    use_tensorboard_logger = json_config["use_tensorboard_logger"] if "use_tensorboard_logger" in json_config else False
 
     # Set seed for reproducibility
     set_seed(seed)
@@ -69,13 +72,24 @@ def run_experiment(seed: int, batch_size: int, epoch: int, learning_rate: float,
     label_dictionary = corpora.make_label_dictionary(label_type="ner")
     logger.info("Label Dictionary: {}".format(label_dictionary.get_items()))
 
-    embeddings = TransformerWordEmbeddings(
-        model=hf_model,
-        layers=layers,
-        subtoken_pooling=subword_pooling,
-        fine_tune=True,
-        use_context=context_size,
-    )
+    embeddings = None
+
+    if "byt5" in hf_model:
+        logger.info("Using own implementation of ByT5Embeddings")
+        embeddings = ByT5Embeddings(
+            model=hf_model,
+            layers=layers,
+            subword_pooling=subword_pooling,
+            fine_tune=True,
+        )
+    else:
+        embeddings = TransformerWordEmbeddings(
+            model=hf_model,
+            layers=layers,
+            subtoken_pooling=subword_pooling,
+            fine_tune=True,
+            use_context=context_size,
+        )
 
     tagger: SequenceTagger = SequenceTagger(
         hidden_size=256,
@@ -91,9 +105,16 @@ def run_experiment(seed: int, batch_size: int, epoch: int, learning_rate: float,
     trainer: ModelTrainer = ModelTrainer(tagger, corpora)
 
     datasets = "-".join([dataset for dataset in hipe_datasets])
+    output_path = f"hmbench-{datasets}-{hf_model}-bs{batch_size}-ws{context_size}-e{epoch}-lr{learning_rate}-pooling{subword_pooling}-layers{layers}-crf{use_crf}-{seed}"
+
+    plugins = []
+
+    if use_tensorboard_logger:
+        logger.info("TensorBoard logging is enabled")
+        plugins.append(TensorboardLogger(log_dir=f"{output_path}/runs", comment=output_path))
 
     trainer.fine_tune(
-        f"hmbench-{datasets}-{hf_model}-bs{batch_size}-ws{context_size}-e{epoch}-lr{learning_rate}-pooling{subword_pooling}-layers{layers}-crf{use_crf}-{seed}",
+        output_path,
         learning_rate=learning_rate,
         mini_batch_size=batch_size,
         max_epochs=epoch,
@@ -101,6 +122,7 @@ def run_experiment(seed: int, batch_size: int, epoch: int, learning_rate: float,
         embeddings_storage_mode='none',
         weight_decay=0.,
         use_final_model_for_eval=False,
+        plugins=plugins,
     )
 
     # Finally, print model card for information
