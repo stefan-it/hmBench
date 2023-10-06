@@ -76,12 +76,12 @@ The following snippet shows an example:
 ```bash
 $ pip3 install git+https://github.com/huggingface/autotrain-advanced.git
 $  export HF_TOKEN="" # Get token from: https://huggingface.co/settings/tokens
-$ autotrain spacerunner --project-name "flair-hipe2022-de-hmteams" \
-  --script-path /home/stefan/Repositories/hmTEAMS/bench \
+$ autotrain spacerunner --project-name "flair-hmbench-hmbyt5-ajmc-en" \
+  --script-path $(pwd) \
   --username stefan-it \
   --token $HF_TOKEN \
   --backend spaces-t4s \
-  --env "CONFIG=configs/hipe2020/de/hmteams.json;HF_TOKEN=$HF_TOKEN;REPO_NAME=stefan-it/autotrain-flair-hipe2022-de-hmteams"
+  --env "CONFIG=configs/ajmc/en/hmbyt5.json;HF_TOKEN=$HF_TOKEN;HUB_ORG_NAME=stefan-it"
 ```
 
 The concrete implementation can be found in [`script.py`](script.py).
