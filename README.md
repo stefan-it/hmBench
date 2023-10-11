@@ -1,19 +1,19 @@
-# hmBench: A Benchmark for Historic Language Models on NER Datasets
+# hmBench: A Benchmark for Historical Language Models on NER Datasets
 
 ![hmBench](cute_library_sheep.jpeg)
 
-This repository presents a benchmark for Historic Language Models with main focus on NER Datasets such as
+This repository presents a benchmark for Historical Language Models with main focus on NER Datasets such as
 [HIPE-2022](https://github.com/hipe-eval/HIPE-2022-data/tree/main).
 
 ## Models
 
-The following Historic Language Models are currently used in benchmarks:
+The following Historical Language Models are currently used in benchmarks:
 
 | Model   | Hugging Face Model Hub Org                                                                            |
 |---------|-------------------------------------------------------------------------------------------------------|
 | hmBERT  | [Historical Multilingual Language Models for Named Entity Recognition](https://huggingface.co/hmbert) |
-| hmTEAMS | [Historic Multilingual TEAMS Models](https://huggingface.co/hmteams)                                  |
-| hmByT5  | [Historic Multilingual and Monolingual ByT5 Models](https://huggingface.co/hmbyt5) (Upcoming!)        |
+| hmTEAMS | [Historical Multilingual TEAMS Models](https://huggingface.co/hmteams)                                  |
+| hmByT5  | [Historical Multilingual and Monolingual ByT5 Models](https://huggingface.co/hmbyt5) (Upcoming!)        |
 
 ## Datasets
 
@@ -95,7 +95,7 @@ All configurations for fine-tuning are located in the `./configs` folder with th
 # Acknowledgements
 
 We thank [Luisa März](https://github.com/LuisaMaerz), [Katharina Schmid](https://github.com/schmika) and
-[Erion Çano](https://github.com/erionc) for their fruitful discussions about Historic Language Models.
+[Erion Çano](https://github.com/erionc) for their fruitful discussions about Historical Language Models.
 
 Research supported with Cloud TPUs from Google's [TPU Research Cloud](https://sites.research.google/trc/about/) (TRC).
 Many Thanks for providing access to the TPUs ❤️
