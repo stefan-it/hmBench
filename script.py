@@ -67,4 +67,5 @@ for seed in seeds:
                         path_in_repo="./",
                         repo_id=f"{hf_hub_org_name}/{repo_name}",
                         repo_type="model",
+                        ignore_patterns="final-model.pt"
                     )
