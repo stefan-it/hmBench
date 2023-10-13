@@ -49,7 +49,10 @@ for seed in seeds:
                     if context_size == 0:
                         context_size = False
 
-                    repo_name = f'hmbench-{datasets.replace("/", "-")}-{hf_model.split("-")[0]}-bs{batch_size}-ws{context_size}-e{epoch}-lr{learning_rate}-pooling{subword_pooling}-layers{layers}-crf{use_crf}-{seed}'
+                    # configs/newseye/fr/hmbyt5.json -> hmbyt5
+                    hf_model_short = config_file.split("/")[-1].replace(".json", "")
+
+                    repo_name = f'hmbench-{datasets.replace("/", "-")}-{hf_model_short}-bs{batch_size}-ws{context_size}-e{epoch}-lr{learning_rate}-pooling{subword_pooling}-layers{layers}-crf{use_crf}-{seed}'
                     output_path = f"hmbench-{datasets}-{hf_model}-bs{batch_size}-ws{context_size}-e{epoch}-lr{learning_rate}-pooling{subword_pooling}-layers{layers}-crf{use_crf}-{seed}"
 
                     repo_url = api.create_repo(
