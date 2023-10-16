@@ -12,8 +12,8 @@ The following Historical Language Models are currently used in benchmarks:
 | Model   | Hugging Face Model Hub Org                                                                            |
 |---------|-------------------------------------------------------------------------------------------------------|
 | hmBERT  | [Historical Multilingual Language Models for Named Entity Recognition](https://huggingface.co/hmbert) |
-| hmTEAMS | [Historical Multilingual TEAMS Models](https://huggingface.co/hmteams)                                  |
-| hmByT5  | [Historical Multilingual and Monolingual ByT5 Models](https://huggingface.co/hmbyt5) (Upcoming!)        |
+| hmTEAMS | [Historical Multilingual TEAMS Models](https://huggingface.co/hmteams)                                |
+| hmByT5  | [Historical Multilingual and Monolingual ByT5 Models](https://huggingface.co/hmbyt5)                  |
 
 ## Datasets
 
