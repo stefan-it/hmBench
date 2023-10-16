@@ -7,5 +7,6 @@
     "learning_rates": [3e-5, 5e-5],
     "subword_poolings": ["first"],
     "hipe_datasets": ["letemps/fr"],
-    "cuda": "0"
+    "cuda": "0",
+    "use_tensorboard_logger": true
 }
