@@ -90,6 +90,7 @@ All configurations for fine-tuning are located in the `./configs` folder with th
 
 # Changelog
 
+* 17.10.2023: 480 models from hyper-parameter search are now available on the [Model Hub](https://huggingface.co/hmbench).
 * 05.10.2023: Initial version of this repository.
 
 # Acknowledgements
