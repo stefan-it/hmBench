@@ -39,7 +39,7 @@ shows an overview of used datasets:
 ## Results
 
 The `hmLeaderboard` space on the Hugging Face Model Hub shows all results and can be
-accessed [here](https://huggingface.co/spaces/hmbench/hmLeaderboard).
+accessed [here](https://huggingface.co/spaces/stefan-it/hmLeaderboard).
 
 ## Fine-Tuning
 
@@ -90,7 +90,7 @@ All configurations for fine-tuning are located in the `./configs` folder with th
 
 # Changelog
 
-* 17.10.2023: 480 models from hyper-parameter search are now available on the [Model Hub](https://huggingface.co/hmbench).
+* 17.10.2023: 740 models from hyper-parameter search are now available on the [Model Hub](https://huggingface.co/stefan-it).
 * 05.10.2023: Initial version of this repository.
 
 # Acknowledgements
