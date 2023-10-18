@@ -41,6 +41,14 @@ shows an overview of used datasets:
 The `hmLeaderboard` space on the Hugging Face Model Hub shows all results and can be
 accessed [here](https://huggingface.co/spaces/stefan-it/hmLeaderboard).
 
+## Best Models
+
+A collection of best performing models can be found here (grouped by the used backbone LM):
+
+* [Fine-Tuned Historical NER Models (hmTEAMS)](https://huggingface.co/collections/stefan-it/fine-tuned-historical-ner-models-hmteams-652f0d8cb355cf468cdab4b0)
+* [Fine-Tuned Historical NER Models (hmBERT)](https://huggingface.co/collections/stefan-it/fine-tuned-historical-ner-models-hmbert-652f0e45960038a0705b20ba)
+* [Fine-Tuned Historical NER Models (hmByT5)](https://huggingface.co/collections/stefan-it/fine-tuned-historical-ner-models-hmbyt5-652f19f60b13cc073984af98)
+
 ## Fine-Tuning
 
 We use Flair for fine-tuning NER models on [HIPE-2022](https://github.com/hipe-eval/HIPE-2022-data) datasets from
