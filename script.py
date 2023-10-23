@@ -45,6 +45,8 @@ for seed in seeds:
                     context_size = json_config["context_size"]
                     layers = json_config["layers"] if "layers" in json_config else "-1"
                     use_crf = json_config["use_crf"] if "use_crf" in json_config else False
+                    use_tensorboard_logger = json_config[
+                        "use_tensorboard_logger"] if "use_tensorboard_logger" in json_config else False
 
                     if context_size == 0:
                         context_size = False
@@ -62,10 +64,23 @@ for seed in seeds:
                         exist_ok=True,
                     )
 
-                    api.upload_folder(
-                        folder_path=output_path,
-                        path_in_repo="./",
+                    if use_tensorboard_logger:
+                        api.upload_folder(
+                            folder_path=f"{output_path}/runs",
+                            path_in_repo="./runs",
+                            repo_id=f"{hf_hub_org_name}/{repo_name}",
+                            repo_type="model"
+                        )
+
+                    api.upload_file(
+                        path_or_fileobj=f"{output_path}/best-model.pt",
+                        path_in_repo="./pytorch_model.bin",
                         repo_id=f"{hf_hub_org_name}/{repo_name}",
-                        repo_type="model",
-                        ignore_patterns="final-model.pt"
+                        repo_type="model"
+                    )
+                    api.upload_file(
+                        path_or_fileobj=f"{output_path}/training.log",
+                        path_in_repo="./training.log",
+                        repo_id=f"{hf_hub_org_name}/{repo_name}",
+                        repo_type="model"
                     )
