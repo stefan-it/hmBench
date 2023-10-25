@@ -10,6 +10,8 @@ import importlib
 
 from huggingface_hub import login, HfApi
 
+from pathlib import Path
+
 fine_tuner = importlib.import_module("flair-fine-tuner")
 
 config_file = os.environ.get("CONFIG")
@@ -72,8 +74,15 @@ for seed in seeds:
                             repo_type="model"
                         )
 
+                    best_model_test_path = Path(f"{output_path}/best-model.pt")
+                    best_model_name = "best-model.pt"
+
+                    if not best_model_test_path.exists():
+                        # In some rare cases no best model was written (e.g. when F1-score is 0 for all epochs)
+                        best_model_name = "final-model.pt"
+
                     api.upload_file(
-                        path_or_fileobj=f"{output_path}/best-model.pt",
+                        path_or_fileobj=f"{output_path}/{best_model_name}",
                         path_in_repo="./pytorch_model.bin",
                         repo_id=f"{hf_hub_org_name}/{repo_name}",
                         repo_type="model"
