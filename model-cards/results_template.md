@@ -9,6 +9,6 @@ And report micro F1-score on development set:
 
 {RESULTS}
 
-The [training log](training.log) and TensorBoard logs (only for hmByT5 and hmTEAMS based models) are also uploaded to the model hub.
+The [training log](training.log) and TensorBoard logs (not available for hmBERT Base model) are also uploaded to the model hub.
 
 More information about fine-tuning can be found [here](https://github.com/stefan-it/hmBench).
