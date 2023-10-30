@@ -1,0 +1,13 @@
+{
+    "seeds": [1],
+    "batch_sizes": [4],
+    "hf_model": "dbmdz/bert-base-historic-multilingual-cased",
+    "context_size": 0,
+    "epochs": [10],
+    "learning_rates": [3e-5],
+    "subword_poolings": ["first"],
+    "hipe_datasets": ["ajmc/en", "ajmc/de", "ajmc/fr", "hipe2020/de", "hipe2020/fr", "icdar/fr", "icdar/nl", "letemps/fr", "newseye/de", "newseye/fi", "newseye/fr", "newseye/sv", "topres19th/en"],
+    "label_name_map": {"pers": "PER", "loc": "LOC", "org": "ORG", "date": "DATE", "time": "DATE", "HumanProd": "PROD", "prod": "PROD", "object": "O", "scope": "O", "work": "O", "comp": "O", "BUILDING": "O", "STREET": "O"},
+    "cuda": "0",
+    "use_tensorboard_logger": true
+}
