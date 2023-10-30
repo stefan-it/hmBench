@@ -30,6 +30,7 @@ def run_experiment(seed: int, batch_size: int, epoch: int, learning_rate: float,
     context_size = json_config["context_size"]
     layers = json_config["layers"] if "layers" in json_config else "-1"
     use_crf = json_config["use_crf"] if "use_crf" in json_config else False
+    label_name_map = json_config["label_name_map"] if "label_name_map" in json_config else None
     use_tensorboard_logger = json_config["use_tensorboard_logger"] if "use_tensorboard_logger" in json_config else False
 
     # Set seed for reproducibility
@@ -57,7 +58,7 @@ def run_experiment(seed: int, batch_size: int, epoch: int, learning_rate: float,
             corpus_list.append(NER_ICDAR_EUROPEANA(language=language))
         else:
             corpus_list.append(NER_HIPE_2022(dataset_name=dataset_name, language=language, preproc_fn=preproc_fn,
-                                             add_document_separator=True))
+                                             label_name_map=label_name_map, add_document_separator=True))
 
     if context_size == 0:
         context_size = False
@@ -102,8 +103,9 @@ def run_experiment(seed: int, batch_size: int, epoch: int, learning_rate: float,
     # Trainer
     trainer: ModelTrainer = ModelTrainer(tagger, corpora)
 
-    datasets = "-".join([dataset for dataset in hipe_datasets])
-    output_path = f"hmbench-{datasets}-{hf_model}-bs{batch_size}-ws{context_size}-e{epoch}-lr{learning_rate}-pooling{subword_pooling}-layers{layers}-crf{use_crf}-{seed}"
+    dataset_identifier = hipe_datasets[0] if len(hipe_datasets) == 1 else "mhmner"
+
+    output_path = f"hmbench-{dataset_identifier}-{hf_model}-bs{batch_size}-ws{context_size}-e{epoch}-lr{learning_rate}-pooling{subword_pooling}-layers{layers}-crf{use_crf}-{seed}"
 
     plugins = []
 
