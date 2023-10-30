@@ -42,7 +42,7 @@ for seed in seeds:
                 for subword_pooling in subword_poolings:
                     fine_tuner.run_experiment(seed, batch_size, epoch, learning_rate, subword_pooling, hipe_datasets,
                                               json_config)
-                    datasets = "-".join([dataset for dataset in hipe_datasets])
+                    dataset_identifier = hipe_datasets[0] if len(hipe_datasets) == 1 else "mhmner"
                     hf_model = json_config["hf_model"]
                     context_size = json_config["context_size"]
                     layers = json_config["layers"] if "layers" in json_config else "-1"
@@ -56,8 +56,8 @@ for seed in seeds:
                     # configs/newseye/fr/hmbyt5.json -> hmbyt5
                     hf_model_short = config_file.split("/")[-1].replace(".json", "")
 
-                    repo_name = f'hmbench-{datasets.replace("/", "-")}-{hf_model_short}-bs{batch_size}-ws{context_size}-e{epoch}-lr{learning_rate}-pooling{subword_pooling}-layers{layers}-crf{use_crf}-{seed}'
-                    output_path = f"hmbench-{datasets}-{hf_model}-bs{batch_size}-ws{context_size}-e{epoch}-lr{learning_rate}-pooling{subword_pooling}-layers{layers}-crf{use_crf}-{seed}"
+                    repo_name = f'hmbench-{dataset_identifier.replace("/", "-")}-{hf_model_short}-bs{batch_size}-ws{context_size}-e{epoch}-lr{learning_rate}-pooling{subword_pooling}-layers{layers}-crf{use_crf}-{seed}'
+                    output_path = f"hmbench-{dataset_identifier}-{hf_model}-bs{batch_size}-ws{context_size}-e{epoch}-lr{learning_rate}-pooling{subword_pooling}-layers{layers}-crf{use_crf}-{seed}"
 
                     repo_url = api.create_repo(
                         repo_id=f"{hf_hub_org_name}/{repo_name}",
