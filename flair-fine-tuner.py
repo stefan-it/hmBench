@@ -18,6 +18,8 @@ from pathlib import Path
 
 from byt5_embeddings import ByT5Embeddings
 
+from hisgermaner_dataset import HisGermaNER
+
 from utils import prepare_ajmc_corpus, prepare_clef_2020_corpus, prepare_newseye_fi_sv_corpus, prepare_newseye_de_fr_corpus
 
 logger = logging.getLogger("flair")
@@ -56,6 +58,8 @@ def run_experiment(seed: int, batch_size: int, epoch: int, learning_rate: float,
 
         if dataset_name == "icdar":
             corpus_list.append(NER_ICDAR_EUROPEANA(language=language))
+        elif dataset_name == "hisgermaner":
+            corpus_list.append(HisGermaNER())
         else:
             corpus_list.append(NER_HIPE_2022(dataset_name=dataset_name, language=language, preproc_fn=preproc_fn,
                                              label_name_map=label_name_map, add_document_separator=True))
