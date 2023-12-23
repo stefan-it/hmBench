@@ -23,7 +23,7 @@ shows an overview of used datasets:
 | Language | Datasets                                                         |
 |----------|------------------------------------------------------------------|
 | English  | [AjMC] - [TopRes19th]                                            |
-| German   | [AjMC] - [NewsEye] - [HIPE-2020]                                 |
+| German   | [AjMC] - [NewsEye] - [HIPE-2020] - [HisGermaNER]                 |
 | French   | [AjMC] - [ICDAR-Europeana] - [LeTemps] - [NewsEye] - [HIPE-2020] |
 | Finnish  | [NewsEye]                                                        |
 | Swedish  | [NewsEye]                                                        |
@@ -35,6 +35,7 @@ shows an overview of used datasets:
 [ICDAR-Europeana]: https://github.com/stefan-it/historic-domain-adaptation-icdar
 [LeTemps]: https://github.com/hipe-eval/HIPE-2022-data/blob/main/documentation/README-letemps.md
 [HIPE-2020]: https://github.com/hipe-eval/HIPE-2022-data/blob/main/documentation/README-hipe2020.md
+[HisGermaNER]: https://huggingface.co/datasets/stefan-it/HisGermaNER
 
 ## Results
 
